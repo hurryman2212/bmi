@@ -9,7 +9,7 @@
 
 fd_set fds;
 
-uint64_t bitset[FD_SETSIZE / (sizeof(uint64_t) * 8)] = {0};
+bitset_t bitset[FD_SETSIZE / (sizeof(bitset_t) * 8)] = {0};
 
 int main(int argc, char *argv[]) {
   if (argc < 3) {
@@ -33,11 +33,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("bitset <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (bitset[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -45,11 +45,11 @@ int main(int argc, char *argv[]) {
   printf(" ]\n");
 
   printf("fds <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
-      if (((uint64_t *)&fds)[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
+      if (((bitset_t *)&fds)[i] & (1UL << j))
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -69,11 +69,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("bitset <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (bitset[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -81,11 +81,11 @@ int main(int argc, char *argv[]) {
   printf(" ]\n");
 
   printf("fds <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
-      if (((uint64_t *)&fds)[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
+      if (((bitset_t *)&fds)[i] & (1UL << j))
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -105,11 +105,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("bitset <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (bitset[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -117,11 +117,11 @@ int main(int argc, char *argv[]) {
   printf(" ]\n");
 
   printf("fds <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
-      if (((uint64_t *)&fds)[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
+      if (((bitset_t *)&fds)[i] & (1UL << j))
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -145,11 +145,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("bitset <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (bitset[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -157,11 +157,11 @@ int main(int argc, char *argv[]) {
   printf(" ]\n");
 
   printf("fds <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
-      if (((uint64_t *)&fds)[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
+      if (((bitset_t *)&fds)[i] & (1UL << j))
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -194,7 +194,7 @@ int main(int argc, char *argv[]) {
   last_fd = atoi(argv[num_bitidx + 1]);
   while (1) {
     printf("[FDS]\n");
-    int fd_num = search_lowest_bit((uint64_t *)&fds, first_fd, last_fd);
+    int fd_num = search_lowest_bit((bitset_t *)&fds, first_fd, last_fd);
     if (fd_num < 0) {
       printf("fd_num < 0; Exiting loop!\n");
       break;
@@ -207,11 +207,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("bitset <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (bitset[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -219,11 +219,11 @@ int main(int argc, char *argv[]) {
   printf(" ]\n");
 
   printf("fds <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
-      if (((uint64_t *)&fds)[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
+      if (((bitset_t *)&fds)[i] & (1UL << j))
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -256,7 +256,7 @@ int main(int argc, char *argv[]) {
   last_fd = atoi(argv[num_bitidx + 1]);
   while (1) {
     printf("[FDS]\n");
-    int fd_num = consume_lowest_bit((uint64_t *)&fds, first_fd, last_fd);
+    int fd_num = consume_lowest_bit((bitset_t *)&fds, first_fd, last_fd);
     if (fd_num < 0) {
       printf("fd_num < 0; Exiting loop!\n");
       break;
@@ -269,11 +269,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("bitset <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (bitset[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -281,11 +281,11 @@ int main(int argc, char *argv[]) {
   printf(" ]\n");
 
   printf("fds <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
-      if (((uint64_t *)&fds)[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
+      if (((bitset_t *)&fds)[i] & (1UL << j))
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -305,11 +305,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("bitset <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (bitset[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -317,11 +317,11 @@ int main(int argc, char *argv[]) {
   printf(" ]\n");
 
   printf("fds <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
-      if (((uint64_t *)&fds)[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
+      if (((bitset_t *)&fds)[i] & (1UL << j))
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -337,7 +337,8 @@ int main(int argc, char *argv[]) {
   first_fd = 0;
   last_fd = atoi(argv[num_bitidx + 1]);
   while (1) {
-    int fd_num = search_lowest_common_bit(bitset, &fds, first_fd, last_fd);
+    int fd_num =
+        search_lowest_common_bit(bitset, (bitset_t *)&fds, first_fd, last_fd);
     if (fd_num < 0) {
       printf("fd_num < 0; Exiting loop!\n");
       break;
@@ -347,11 +348,11 @@ int main(int argc, char *argv[]) {
   }
 
   printf("bitset <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (bitset[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
@@ -359,11 +360,11 @@ int main(int argc, char *argv[]) {
   printf(" ]\n");
 
   printf("fds <= [");
-  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(uint64_t) * 8)); ++i) {
+  for (unsigned long i = 0; i < (__FD_SETSIZE / (sizeof(bitset_t) * 8)); ++i) {
     printf(" ");
-    for (unsigned long j = 0; j < (sizeof(uint64_t) * 8); ++j) {
+    for (unsigned long j = 0; j < (sizeof(bitset_t) * 8); ++j) {
       if (((uint64_t *)&fds)[i] & (1UL << j))
-        printf("1(%d)", (i * 64) + j);
+        printf("1(%lu)", (i * 64) + j);
       else
         printf("0");
     }
