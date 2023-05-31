@@ -2,7 +2,7 @@
 
 #include <x86intrin.h>
 
-int test_bit(const bitset_t *bitset, uint32_t idx) {
+int test_bit(const bitset_t *restrict bitset, uint32_t idx) {
   uint32_t r32_bitset = *(((uint32_t *)bitset) + (idx >> 5));
 
   int cf;
@@ -11,7 +11,7 @@ int test_bit(const bitset_t *bitset, uint32_t idx) {
   return cf;
 }
 
-int set_bit_nonatomic(bitset_t *bitset, uint32_t idx) {
+int set_bit_nonatomic(bitset_t *restrict bitset, uint32_t idx) {
   uint32_t *bitset32 = (void *)bitset;
   bitset32 += (idx >> 5);
 
@@ -20,7 +20,7 @@ int set_bit_nonatomic(bitset_t *bitset, uint32_t idx) {
 
   return cf;
 }
-int unset_bit_nonatomic(bitset_t *bitset, uint32_t idx) {
+int unset_bit_nonatomic(bitset_t *restrict bitset, uint32_t idx) {
   uint32_t *bitset32 = (void *)bitset;
   bitset32 += (idx >> 5);
 
@@ -29,7 +29,7 @@ int unset_bit_nonatomic(bitset_t *bitset, uint32_t idx) {
 
   return cf;
 }
-int set_bit_atomic(volatile bitset_t *bitset, uint32_t idx) {
+int set_bit_atomic(bitset_t *restrict bitset, uint32_t idx) {
   int cf;
   asm volatile("lock bts %2, %1"
                : "=@ccc"(cf), "+m"(*bitset)
@@ -38,7 +38,7 @@ int set_bit_atomic(volatile bitset_t *bitset, uint32_t idx) {
 
   return cf;
 }
-int unset_bit_atomic(volatile bitset_t *bitset, uint32_t idx) {
+int unset_bit_atomic(bitset_t *restrict bitset, uint32_t idx) {
   int cf;
   asm volatile("lock btr %2, %1"
                : "=@ccc"(cf), "+m"(*bitset)
@@ -48,7 +48,7 @@ int unset_bit_atomic(volatile bitset_t *bitset, uint32_t idx) {
   return cf;
 }
 
-int64_t search_lowest_bit(const bitset_t *bitset, uint32_t start_idx,
+int64_t search_lowest_bit(const bitset_t *restrict bitset, uint32_t start_idx,
                           uint32_t last_idx) {
   bitset_t tmp = start_idx & 0x3F;
   if (tmp) {
@@ -70,16 +70,16 @@ int64_t search_lowest_bit(const bitset_t *bitset, uint32_t start_idx,
   }
   return -1;
 }
-int64_t consume_lowest_bit(bitset_t *bitset, uint32_t start_idx,
-                           uint32_t last_idx) {
+int64_t consume_lowest_bit_nonatomic(bitset_t *restrict bitset,
+                                     uint32_t start_idx, uint32_t last_idx) {
   int64_t res = search_lowest_bit(bitset, start_idx, last_idx);
   if (res >= 0)
     *(bitset + (res >> 6)) = __blsr_u64(*(bitset + (res >> 6)));
   return res;
 }
-int64_t search_lowest_common_bit(const bitset_t *bitset,
-                                 const bitset_t *bitset2, uint32_t start_idx,
-                                 uint32_t last_idx) {
+int64_t search_lowest_common_bit(const bitset_t *restrict bitset,
+                                 const bitset_t *restrict bitset2,
+                                 uint32_t start_idx, uint32_t last_idx) {
   bitset_t tmp = start_idx & 0x3F;
   if (tmp) {
     bitset_t res = *(bitset + (start_idx >> 6)) &
@@ -101,3 +101,5 @@ int64_t search_lowest_common_bit(const bitset_t *bitset,
   }
   return -1;
 }
+
+/* BMI_C */

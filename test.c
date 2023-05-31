@@ -327,7 +327,7 @@ int main(int argc, char *argv[]) {
   last_fd = atoi(argv[num_bitidx + 1]);
   while (1) {
     printf("[BITSET]\n");
-    int fd_num = consume_lowest_bit(bitset, first_fd, last_fd);
+    int fd_num = consume_lowest_bit_nonatomic(bitset, first_fd, last_fd);
     if (fd_num < 0) {
       printf("fd_num < 0; Exiting loop!\n");
       break;
@@ -343,7 +343,8 @@ int main(int argc, char *argv[]) {
   last_fd = atoi(argv[num_bitidx + 1]);
   while (1) {
     printf("[FDS]\n");
-    int fd_num = consume_lowest_bit((bitset_t *)&fds, first_fd, last_fd);
+    int fd_num =
+        consume_lowest_bit_nonatomic((bitset_t *)&fds, first_fd, last_fd);
     if (fd_num < 0) {
       printf("fd_num < 0; Exiting loop!\n");
       break;
